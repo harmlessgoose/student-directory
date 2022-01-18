@@ -1,24 +1,30 @@
 # Input for Hash of students
 def input_students
-    puts "Please enter the names of the students"
+    puts "Please enter the names of the students and their cohort, seperated by a comma ','"
     puts "To finish, just hit return twice"
 
     # Create an empty array
     students = []
 
-    # Get the first name
-    name = gets.chomp
+    # Get the input
+    input = gets.chomp.split(', ')
 
+
+    
     # While the name is not empty, repeat this code
-    while !name.empty? do
+    while !input.empty? do
 
-      # Add the student hash to the array
-      students << {name: name, cohort: :november}
+        if input[1] == nil
+            input[1] = "default"
+        end
+
+      # Add the student name and cohort hash to the array
+      students << {name: input[0], cohort: input[1].to_sym}
       puts "Now we have #{students.count} students"
 
-      # Het another name from the user
-      name = gets.chomp
-
+      # Get another name from the user
+      input = gets.chomp.split(', ')
+      
     end
 
     # Return the array of students
@@ -32,12 +38,8 @@ def print_header
 end
 
 def print(students)
-    students.each_with_index do |student, index|
-
-        # Only print students whose name is shorter than 12 characters
-        if student[:name].length < 12
-            puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
-        end
+    students.each do |student, index|
+        puts "#{student[:name]} (#{student[:cohort]} cohort)"
     end
 end
 
