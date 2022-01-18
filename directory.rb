@@ -14,14 +14,19 @@ def input_students
     # While the name is not empty, repeat this code
     while !input.empty? do
 
+        # Add default cohort
         if input[1] == nil
             input[1] = "default"
         end
 
       # Add the student name and cohort hash to the array
       students << {name: input[0], cohort: input[1].to_sym}
-      puts "Now we have #{students.count} students"
-
+      
+      if students.count == 1
+        puts "Now we have #{students.count} student"
+      else
+        puts "Now we have #{students.count} students"
+      end
       # Get another name from the user
       input = gets.chomp.split(', ')
       
