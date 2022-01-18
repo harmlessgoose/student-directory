@@ -16,8 +16,12 @@ def input_students
             input[1] = "default"
         end
 
+        name = input[0]
+        cohort = input[1]
+
       # Add the student name and cohort hash to the array
-      @students << {name: input[0], cohort: input[1].to_sym}
+      add_students(name, cohort)
+
       
       # Correctly pluralise 'student/students'
       if @students.count == 1
@@ -108,9 +112,13 @@ def load_students(filename = "students.csv")
     file = File.open(filename, "r")
     file.readlines.each do |line|
       name, cohort = line.chomp.split(',')
-      @students << {name: name, cohort: cohort.to_sym}
+      add_students(name, cohort)
     end
     file.close
+end
+
+def add_students(name, cohort)
+    @students << {name: name, cohort: cohort.to_sym}
 end
 
 def try_load_students
