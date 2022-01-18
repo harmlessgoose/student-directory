@@ -34,8 +34,8 @@ end
 def print(students)
     students.each_with_index do |student, index|
 
-        # Only print names that begin with T
-        if student[:name] == "T" || student[:name] == "t"
+        # Only print students whose name is shorter than 12 characters
+        if student[:name].length < 12
             puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
         end
     end
