@@ -22,6 +22,7 @@ def input_students
       # Add the student name and cohort hash to the array
       students << {name: input[0], cohort: input[1].to_sym}
       
+      # Correctly pluralise 'student/students'
       if students.count == 1
         puts "Now we have #{students.count} student"
       else
@@ -53,6 +54,11 @@ def print_footer(students)
 end
   
 students = input_students
-print_header
-print(students)
-print_footer(students)
+
+if students.empty?
+    puts "We have no students"
+else
+    print_header
+    print(students)
+    print_footer(students)
+end
